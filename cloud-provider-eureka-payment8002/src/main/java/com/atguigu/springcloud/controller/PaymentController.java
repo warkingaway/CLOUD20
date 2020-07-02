@@ -22,17 +22,22 @@ public class PaymentController {
     private String serverPort;
 
     @PostMapping("/add")
-    public CommonResult add (@RequestBody Payment payment){
+    public CommonResult add(@RequestBody Payment payment) {
         int rs = paymentService.add(payment);
-        if(rs>0){
-            return new CommonResult<>(200,"插入数据库成功 port:"+serverPort,rs);
-        }else{
-            return new CommonResult<>(400,"插入数据库失败",null);
+        if (rs > 0) {
+            return new CommonResult<>(200, "插入数据库成功 port:" + serverPort, rs);
+        } else {
+            return new CommonResult<>(400, "插入数据库失败", null);
         }
     }
 
     @GetMapping("/payment/get/{id}")
-    public String get (@PathVariable("id") String id){
-        return  serverPort + "--" + paymentService.getById(id).toString();
+    public String get(@PathVariable("id") String id) {
+        return serverPort + "--" + paymentService.getById(id).toString();
+    }
+
+    @GetMapping("/payment/lb")
+    public String getLb() {
+        return serverPort;
     }
 }

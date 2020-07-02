@@ -47,14 +47,15 @@ public class PaymentController {
     @GetMapping("/discovery")
     private Object discovery(){
         List<String> services = discoveryClient.getServices();
-        services.forEach(s->{
-            System.out.println("______________服务列表:"+s);
-        });
+        services.forEach(s-> System.out.println("______________服务列表:"+s));
 
         List<ServiceInstance> instances = discoveryClient.getInstances("CLOUD-PROVIDER-SERVICE");
-        instances.forEach(s->{
-            System.out.println(s.getServiceId() +"--"+ s.getHost()+"--"+s.getPort()+"--"+s.getUri());
-        });
+        instances.forEach(s-> System.out.println(s.getServiceId() +"--"+ s.getHost()+"--"+s.getPort()+"--"+s.getUri()));
         return this.discoveryClient;
+    }
+
+    @GetMapping("/payment/lb")
+    public String getLb(){
+        return  serverPort;
     }
 }
