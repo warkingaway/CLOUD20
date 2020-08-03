@@ -1,0 +1,6 @@
+/Users/chengchaoyang/IdeaProjects/CLOUD20/cloud-consumer-eureka-order80/src/main/java/com/atguigu/springcloud/config/ApplicationContextConfig.java
+/Users/chengchaoyang/IdeaProjects/CLOUD20/cloud-consumer-eureka-order80/src/main/java/com/atguigu/myrule/MySelfRule.java
+/Users/chengchaoyang/IdeaProjects/CLOUD20/cloud-consumer-eureka-order80/src/main/java/com/atguigu/springcloud/lb/LoadBalancer.java
+/Users/chengchaoyang/IdeaProjects/CLOUD20/cloud-consumer-eureka-order80/src/main/java/com/atguigu/springcloud/OrderApplication80.java
+/Users/chengchaoyang/IdeaProjects/CLOUD20/cloud-consumer-eureka-order80/src/main/java/com/atguigu/springcloud/lb/MyLB.java
+/Users/chengchaoyang/IdeaProjects/CLOUD20/cloud-consumer-eureka-order80/src/main/java/com/atguigu/springcloud/controller/OrderController.java

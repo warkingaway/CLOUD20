@@ -14,10 +14,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Component
 public class MyLB implements LoadBalancer {
 
-    private AtomicInteger atomicInteger = new AtomicInteger(0);
+    private final AtomicInteger atomicInteger = new AtomicInteger(0);
 
     //坐标
-    private final int getAndIncrement() {
+    private int getAndIncrement() {
         int current;
         int next;
         do {

@@ -1,5 +1,6 @@
 package com.atguigu.springcloud.controller;
 
+
 import com.atguigu.springcloud.service.PaymentService;
 import com.atguigui.springcloud.model.CommonResult;
 import com.atguigui.springcloud.model.Payment;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author czy
@@ -30,32 +32,42 @@ public class PaymentController {
     private String serverPort;
 
     @PostMapping("/add")
-    public CommonResult add (@RequestBody Payment payment){
+    public CommonResult add(@RequestBody Payment payment) {
         int rs = paymentService.add(payment);
-        if(rs>0){
-            return new CommonResult<>(200,"插入数据库成功 port:"+serverPort,rs);
-        }else{
-            return new CommonResult<>(400,"插入数据库失败",null);
+        if (rs > 0) {
+            return new CommonResult<>(200, "插入数据库成功 port:" + serverPort, rs);
+        } else {
+            return new CommonResult<>(400, "插入数据库失败", null);
         }
     }
 
     @GetMapping("/payment/get/{id}")
-    public String get (@PathVariable("id") String id){
-        return  serverPort + "--" + paymentService.getById(id).toString();
+    public String get(@PathVariable("id") String id) {
+        return serverPort + "--" + paymentService.getById(id).toString();
     }
 
     @GetMapping("/discovery")
-    private Object discovery(){
+    private Object discovery() {
         List<String> services = discoveryClient.getServices();
-        services.forEach(s-> System.out.println("______________服务列表:"+s));
+        services.forEach(s -> System.out.println("______________服务列表:" + s));
 
         List<ServiceInstance> instances = discoveryClient.getInstances("CLOUD-PROVIDER-SERVICE");
-        instances.forEach(s-> System.out.println(s.getServiceId() +"--"+ s.getHost()+"--"+s.getPort()+"--"+s.getUri()));
+        instances.forEach(s -> System.out.println(s.getServiceId() + "--" + s.getHost() + "--" + s.getPort() + "--" + s.getUri()));
         return this.discoveryClient;
     }
 
     @GetMapping("/payment/lb")
-    public String getLb(){
-        return  serverPort;
+    public String getLb() {
+        return serverPort;
+    }
+
+    @GetMapping("/payment/timeout/test")
+    public String timeOut() {
+        try {
+            TimeUnit.SECONDS.sleep(3);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return serverPort;
     }
 }
