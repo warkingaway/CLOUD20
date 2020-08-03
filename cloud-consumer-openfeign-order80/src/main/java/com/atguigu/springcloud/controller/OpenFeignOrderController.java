@@ -4,7 +4,6 @@ import com.atguigu.springcloud.rpc.OpenFeignPaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -21,5 +20,10 @@ public class OpenFeignOrderController {
     @GetMapping("/consumer/openfeign/{id}")
     public String getPaymentById(@PathVariable("id") String id) {
         return openFeignPaymentService.getById(id);
+    }
+
+    @GetMapping("/consumer/openfeign/timeout/test")
+    public String timeout() {
+        return openFeignPaymentService.timeout();
     }
 }
